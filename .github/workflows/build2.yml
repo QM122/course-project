@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Netlify CLI
-        run: npm i -g vercel
+        run: npm install -g netlify-cli
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
@@ -24,5 +24,7 @@ jobs:
 
       - name: Deploy to Netlify
         run: |
-          vercel --prod \
-          --dir=app2
+          netlify deploy --prod \
+          --dir=app2 \
+          --site ${{secrets.NETLIFY_SITE_ID_2}} \
+          --auth ${{secrets.NETLIFY_API_TOKEN}}
