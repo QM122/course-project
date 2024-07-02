@@ -16,13 +16,15 @@ jobs:
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
-      - name: Build to Netlify
-        run: netlify build \
-          --site ${{secrets.NETLIFY_SITE_ID}} \
-          --auth ${{secrets.NETLIFY_API_TOKEN}}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PracticeApp Build Package
+          path: index.html
 
       - name: Deploy to Netlify
         run: |
           netlify deploy --prod \
+          --dir=index.html \
           --site ${{secrets.NETLIFY_SITE_ID}} \
           --auth ${{secrets.NETLIFY_API_TOKEN}}
