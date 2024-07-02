@@ -20,11 +20,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: PracticeApp Build Package
-          path:
+          path: app
 
       - name: Deploy to Netlify
         run: |
           netlify deploy --prod \
-          --dir=\ \
+          --dir=app \
           --site ${{secrets.NETLIFY_SITE_ID}} \
           --auth ${{secrets.NETLIFY_API_TOKEN}}
